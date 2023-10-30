@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title %}
+  <title>
+    {% if 'create' in request.path %}
+      Create Category
+    {% else %}
+      Update Category
+    {% endif %}
+  </title>
+{% endblock %}
+
+{% block content %}
+<!--begin::Entry-->
+<div class="d-flex flex-column-fluid mt-5">
+  <!--begin::Container-->
+  <div class="container">
+    <!--begin::Card-->
+    <div class="card card-custom">
+      <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title">
+          <h3 class="card-label">
+             Add CATEGORIZACIÓN
+          </h3>
+        </div>
+      </div>
+      <div class="card-body">
+        <form class="form" method="POST"
+            {% if 'create' in request.path %}
+            action="{% url 'create_categorization' %}"
+            {% else %}
+            action="{% url 'update_categorization' object.id %}"
+            {% endif %}
+        >
+            {% csrf_token %}
+            {{form.as_p}}
+            <div class="row">
+                <div class="col-lg-6">
+                    <button class="btn btn-primary mr-2" type="submit">
+                        {% if 'create' in request.path %}
+                            Create
+                        {% else %}
+                            Update
+                        {% endif %}
+                    </button>
+                    <a class="btn btn-secondary" href="{% url 'list_categorization' %}">Cancel</a>
+                </div>
+            </div>
+        </form>
+      </div>
+    </div>
+    <!--end::Card-->
+  </div>
+  <!--end::Container-->
+</div>
+<!--end::Entry-->
+{% endblock %}
+
+{% block extra_scripts %}
+  <script>
+    var program = $("#id_program");
+
+    $(document).ready(function() {
+      $("#id_program").append(new Option("Other", "other"));
+    });
+
+    program.change(function() {
+      console.log($(this).val());
+      if ($(this).val() == "other") {
+        localStorage.setItem("program", window.location.href);
+        window.location.href = '{% url "create_program" %}';
+      }
+    })
+
+  </script>
+{% endblock %}

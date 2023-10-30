@@ -1,0 +1,304 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  <title>
+    {% if 'create' in request.path %}
+      Create EVALUACIÓN
+    {% else %}
+      Update EVALUACIÓN
+    {% endif %}
+  </title>
+{% endblock %}
+
+{% block extra_stylesheets %}
+<link
+      href="{% static 'assets/css/pages/wizard/wizard-4.css' %}"
+      rel="stylesheet"
+      type="text/css"
+    />
+{% endblock extra_stylesheets %}
+
+{% block content %}
+<!--begin::Entry-->
+<div class="d-flex flex-column-fluid">
+    <div class="container">
+        <div class="card card-custom card-transparent">
+            <div class="card-body p-0">
+                <div
+                    class="wizard wizard-4"
+                    id="kt_wizard_v4"
+                    data-wizard-state="step-first"
+                    data-wizard-clickable="true"
+                >
+                    <div class="wizard-nav">
+                    <div class="wizard-steps">
+                        <div
+                        class="wizard-step"
+                        data-wizard-type="step"
+                        data-wizard-state="current"
+                        id="step1"
+                        style="
+                            flex: 0 0 calc(50% - 0.25rem);
+                            width: calc(50% - 0.25rem);
+                        "
+                        >
+                        <div class="wizard-wrapper">
+                            <div class="wizard-number">1</div>
+                            <div class="wizard-label">
+                            <div class="wizard-title">Step 1</div>
+                            <div class="wizard-desc">Enter the Rates</div>
+                            </div>
+                        </div>
+                        </div>
+                        <div
+                        class="wizard-step"
+                        data-wizard-type="step"
+                        id="step2"
+                        style="
+                            flex: 0 0 calc(50% - 0.25rem);
+                            width: calc(50% - 0.25rem);
+                        "
+                        >
+                        <div class="wizard-wrapper">
+                            <div class="wizard-number">2</div>
+                            <div class="wizard-label">
+                            <div class="wizard-title">Step 2</div>
+                            <div class="wizard-desc">
+                                Enter the income and expenses
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div
+                    class="card card-custom card-shadowless rounded-top-0"
+                    >
+                    <div class="card-body p-0">
+                        <div
+                        class="row justify-content-center py-8 px-8 py-lg-15 px-lg-10"
+                        >
+                        <div class="col-xl-12 col-xxl-7">
+                            <form class="form mt-0 mt-lg-10" id="kt_form">
+                            {% csrf_token %}
+                            <div
+                                class="pb-5"
+                                data-wizard-type="step-content"
+                                data-wizard-state="current"
+                                id="step1_content"
+                            >
+                                <div class="form-group">
+                                <label>{{form.program.label}}</label>
+                                {{form.program}}
+                                <span class="form-text text-muted"
+                                    >Please select a program</span
+                                >
+                                </div>
+                                
+                                <div class="form-group">
+                                <label>{{form.inflation_rate.label}}</label>
+                                <div class="input-group">
+                                    {{form.inflation_rate}}
+                                    <div class="input-group-append">
+                                    <span class="input-group-text">%</span>
+                                    </div>
+                                </div>
+                                <span class="form-text text-muted"
+                                    >Ingrese la tasa.</span
+                                >
+                                </div>
+                                <div class="form-group">
+                                <label
+                                    >{{form.initial_investment.label}}</label
+                                >
+                                <div class="input-group">
+                                    {{form.initial_investment}}
+                                    <div class="input-group-append">
+                                    <span class="input-group-text">$</span>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="form-group">
+                                <label>{{form.years.label}}</label>
+                                <div class="input-group">
+                                    {{form.years}}
+                                </div>
+                                </div>
+                            </div>
+                            <div
+                                class="pb-5"
+                                data-wizard-type="step-content"
+                                id="step2_content"
+                            ></div>
+                            <div
+                                class="d-flex justify-content-between border-top mt-5 pt-10"
+                            >
+                                <div class="mr-2">
+                                <button
+                                    class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4"
+                                    data-wizard-type="action-prev"
+                                >
+                                    Previous
+                                </button>
+                                </div>
+                                <div>
+                                <button
+                                    class="btn btn-success font-weight-bold text-uppercase px-9 py-4 mr-10"
+                                    data-wizard-type="action-submit"
+                                >
+                                    Submit
+                                </button>
+                                <button
+                                    class="btn btn-primary font-weight-bold text-uppercase px-9 py-4 mr-10"
+                                    data-wizard-type="action-next"
+                                >
+                                    Next Step
+                                </button>
+                                <a
+                                    class="btn btn-secondary font-weight-bold text-uppercase px-9 py-4"
+                                    href="{% url 'list_evaluation' %}"
+                                >
+                                    Cancel
+                                </a>
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end::Entry-->
+{% endblock %}
+
+{% block extra_scripts %}
+  <script>
+    var program = $("#id_program");
+      var data;
+
+      function submit_data() {
+        let form_data = data;
+        form_data["program"] = $("#id_program").val();
+        form_data["risk_rate"] = 0;
+        form_data["inflation_rate"] = parseFloat($("#id_inflation_rate").val());
+        form_data["initial_investment"] = parseFloat(
+          $("#id_initial_investment").val()
+        );
+        form_data["years"] = parseInt($("#id_years").val());
+        form_data["csrfmiddlewaretoken"] = $(
+          "input[name='csrfmiddlewaretoken'"
+        ).val();
+        $.post("{% url 'create_evaluation' %}", form_data, function (res, stat) {
+          window.location.href = "{% url 'list_evaluation' %}";
+        });
+      }
+
+      $(document).ready(function () {
+        $("#id_program").append(new Option("Other", "other"));
+        let current_wizard = $("div[data-wizard-state='current']");
+
+        $("button[data-wizard-type='action-next']").click(function () {
+          if ($("div[data-wizard-state='current']").attr("id") == "step1") {
+            $("#step2_content").empty();
+            let step2_income_content =
+              "<fieldset><legend>TOTAL INGRESOS</legend><div class='row'>" +
+              "<div class='col-xl-6'>" +
+              "<div class='form-group'>" +
+              "<label>2021</label>" +
+              "<input type='number' class='form-control form-control-solid form-control-lg' name='2021_income' value='0' readonly />" +
+              "</div>" +
+              "</div>";
+            let years = parseInt($("#id_years").val());
+            for (let i = 0; i < years; i++) {
+              step2_income_content +=
+                "<div class='col-xl-6'>" +
+                "<div class='form-group'>" +
+                "<label>" +
+                (2022 + i) +
+                "</label>" +
+                "<input type='number' class='form-control form-control-solid form-control-lg' name='" +
+                (2022 + i) +
+                "_income' required />" +
+                "</div>" +
+                "</div>";
+              if (i == years) {
+                step2_income_content += "</div></fieldset>";
+              }
+            }
+            $("#step2_content").append(step2_income_content);
+
+            let step2_expense_content =
+              "<fieldset><legend>TOTAL EGRESOS</legend><div class='row'>" +
+              "<div class='col-xl-6'>" +
+              "<div class='form-group'>" +
+              "<label>2021</label>" +
+              "<input type='number' class='form-control form-control-solid form-control-lg' name='2021_expense' value='" +
+              $("#id_initial_investment").val() +
+              "'/>" +
+              "</div>" +
+              "</div>";
+            for (let i = 0; i < years; i++) {
+              step2_expense_content +=
+                "<div class='col-xl-6'>" +
+                "<div class='form-group'>" +
+                "<label>" +
+                (2022 + i) +
+                "</label>" +
+                "<input type='number' class='form-control form-control-solid form-control-lg' name='" +
+                (2022 + i) +
+                "_expense' required />" +
+                "</div>" +
+                "</div>";
+              if (i == years) {
+                step2_expense_content += "</div></fieldset>";
+              }
+            }
+            $("#step2_content").append(step2_expense_content);
+          }
+        });
+
+        $("button[data-wizard-type='action-submit']").click(event, function () {
+          event.preventDefault();
+          let years = parseInt($("#id_years").val());
+          let inflation_rate = $("#id_inflation_rate").val();
+          let total_income = [];
+          let total_expense = [];
+          let income_name;
+          let expense_name;
+          for (let i = 0; i < years + 1; i++) {
+            income_name = (2021 + i).toString() + "_income";
+            expense_name = (2021 + i).toString() + "_expense";
+            total_income.push($("input[name=" + income_name + "]").val());
+            total_expense.push($("input[name=" + expense_name + "]").val());
+          }
+          $.post(
+            "{% url 'calculate_cash_flow' %}",
+            {
+              initial_investment: $("#id_initial_investment").val(),
+              inflation_rate: inflation_rate,
+              total_income: total_income.join(","),
+              total_expense: total_expense.join(","),
+            },
+            function (response, status) {
+              console.log(response["total_income"]);
+              data = response;
+              submit_data();
+            }
+          );
+        });
+      });
+
+      program.change(function () {
+        if ($(this).val() == "other") {
+          localStorage.setItem("program", window.location.href);
+          window.location.href = '{% url "create_program" %}';
+        }
+      });
+  </script>
+    <script src="{% static 'assets/js/pages/custom/wizard/wizard-4.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,76 @@
+proyecto,objetivo,categorias,score
+Canales Digitales (Cloud),Valor de Negocio,Cliente,6.553172845507963
+Canales Digitales (Cloud),Valor de Negocio,Estrategia,10.964909659547477
+Canales Digitales (Cloud),Valor de Negocio,Cultura,7.576865478408136
+Canales Digitales (Cloud),Valor TI,Tecnología,1.9752090588127618
+Canales Digitales (Cloud),Valor TI,Operaciones,3.427019845456211
+Canales Digitales (Cloud),Valor TI,Datos,1.359859997944819
+Canales Digitales (Cloud),Valor TI,Agilidad,3.793449804164096
+Canales Digitales (Cloud),Valor Financiero,Valor Presente Neto,4
+Canales Digitales (Cloud),Valor Financiero,Periodo de Retorno,4
+Canales Digitales (Cloud),Valor Financiero,Tasa Interna de Retorno,4
+Canales Digitales (Cloud),Valor Financiero,Retorno de la Inversión,4
+Canales Digitales (Cloud),Valor Financiero,Nivel de Inversión,4
+Canales Digitales (Cloud),Riesgos,Riesgo de Negocio,4.380952380952379
+Canales Digitales (Cloud),Riesgos,Riesgos Técnicos,6.159848828420268
+Canales Digitales (Cloud),Riesgos,Riesgos Operativos,2.732451499118163
+Mobile,Valor de Negocio,Cliente,5.8859380095268365
+Mobile,Valor de Negocio,Estrategia,10.257376151309556
+Mobile,Valor de Negocio,Cultura,7.576865478408136
+Mobile,Valor TI,Tecnología,1.8944301141046829
+Mobile,Valor TI,Operaciones,3.427019845456211
+Mobile,Valor TI,Datos,1.359859997944819
+Mobile,Valor TI,Agilidad,3.793449804164096
+Mobile,Valor Financiero,Valor Presente Neto,4
+Mobile,Valor Financiero,Periodo de Retorno,4
+Mobile,Valor Financiero,Tasa Interna de Retorno,4
+Mobile,Valor Financiero,Retorno de la Inversión,0
+Mobile,Valor Financiero,Nivel de Inversión,0
+Mobile,Riesgos,Riesgo de Negocio,4.380952380952379
+Mobile,Riesgos,Riesgos Técnicos,6.159848828420268
+Mobile,Riesgos,Riesgos Operativos,2.732451499118163
+UX,Valor de Negocio,Cliente,4.844743733632615
+UX,Valor de Negocio,Estrategia,13.268022503032817
+UX,Valor de Negocio,Cultura,9.650294502835335
+UX,Valor TI,Tecnología,2.0646525463988694
+UX,Valor TI,Operaciones,4.477595049181495
+UX,Valor TI,Datos,1.476399469715704
+UX,Valor TI,Agilidad,5.99246203531918
+UX,Valor Financiero,Valor Presente Neto,4
+UX,Valor Financiero,Periodo de Retorno,4
+UX,Valor Financiero,Tasa Interna de Retorno,4
+UX,Valor Financiero,Retorno de la Inversión,0
+UX,Valor Financiero,Nivel de Inversión,4
+UX,Riesgos,Riesgo de Negocio,4.380952380952379
+UX,Riesgos,Riesgos Técnicos,5.3418291761148975
+UX,Riesgos,Riesgos Operativos,2.732451499118163
+Robotics,Valor de Negocio,Cliente,4.190037131065052
+Robotics,Valor de Negocio,Estrategia,10.946231222824514
+Robotics,Valor de Negocio,Cultura,8.961535400585612
+Robotics,Valor TI,Tecnología,2.1610181083221116
+Robotics,Valor TI,Operaciones,4.305187879559189
+Robotics,Valor TI,Datos,1.476399469715704
+Robotics,Valor TI,Agilidad,5.99246203531918
+Robotics,Valor Financiero,Valor Presente Neto,0
+Robotics,Valor Financiero,Periodo de Retorno,4
+Robotics,Valor Financiero,Tasa Interna de Retorno,4
+Robotics,Valor Financiero,Retorno de la Inversión,0
+Robotics,Valor Financiero,Nivel de Inversión,2.22222222222222
+Robotics,Riesgos,Riesgo de Negocio,4.380952380952379
+Robotics,Riesgos,Riesgos Técnicos,5.895600907029483
+Robotics,Riesgos,Riesgos Operativos,2.732451499118163
+Sucursal Virtual (Cloud),Valor de Negocio,Cliente,6.553172845507963
+Sucursal Virtual (Cloud),Valor de Negocio,Estrategia,10.964909659547477
+Sucursal Virtual (Cloud),Valor de Negocio,Cultura,7.576865478408136
+Sucursal Virtual (Cloud),Valor TI,Tecnología,1.9752090588127618
+Sucursal Virtual (Cloud),Valor TI,Operaciones,3.427019845456211
+Sucursal Virtual (Cloud),Valor TI,Datos,1.359859997944819
+Sucursal Virtual (Cloud),Valor TI,Agilidad,3.793449804164096
+Sucursal Virtual (Cloud),Valor Financiero,Valor Presente Neto,0.888888888888889
+Sucursal Virtual (Cloud),Valor Financiero,Periodo de Retorno,2.22222222222222
+Sucursal Virtual (Cloud),Valor Financiero,Tasa Interna de Retorno,2.22222222222222
+Sucursal Virtual (Cloud),Valor Financiero,Retorno de la Inversión,4
+Sucursal Virtual (Cloud),Valor Financiero,Nivel de Inversión,0.888888888888889
+Sucursal Virtual (Cloud),Riesgos,Riesgo de Negocio,4.380952380952379
+Sucursal Virtual (Cloud),Riesgos,Riesgos Técnicos,6.159848828420268
+Sucursal Virtual (Cloud),Riesgos,Riesgos Operativos,2.732451499118163

@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block title %}
+  <title>
+    {% if 'create' in request.path %}
+      Create RIESGOS
+    {% else %}
+      Update RIESGOS
+    {% endif %}
+  </title>
+{% endblock %}
+
+{% block content %}
+<!--begin::Entry-->
+<div class="d-flex flex-column-fluid mt-5">
+  <!--begin::Container-->
+  <div class="container">
+    <!--begin::Card-->
+    <div class="card card-custom">
+      <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title">
+          <h3 class="card-label">
+             Add RIESGOS
+          </h3>
+        </div>
+      </div>
+      <div class="card-body">
+        <form class="form" method="POST"
+            {% if 'create' in request.path %}
+            action="{% url 'create_risk' %}"
+            {% else %}
+            action="{% url 'update_risk' object.id %}"
+            {% endif %}
+        >
+            {% csrf_token %}
+            {{form.as_p}}
+            <div class="row">
+                <div class="col-lg-6">
+                    <button class="btn btn-primary mr-2" type="submit">
+                        {% if 'create' in request.path %}
+                            Create
+                        {% else %}
+                            Update
+                        {% endif %}
+                    </button>
+                    <a class="btn btn-secondary" href="{% url 'list_risk' %}">Cancel</a>
+                </div>
+            </div>
+        </form>
+      </div>
+    </div>
+    <!--end::Card-->
+  </div>
+  <!--end::Container-->
+</div>
+<!--end::Entry-->
+{% endblock %}
+
+{% block extra_scripts %}
+  <script>
+    var program = $("#id_program");
+    var probability = $("#id_probability");
+    var impact = $("#id_impact");
+    var evaluation_risk = $("#id_risk_evaluation");
+    
+    function categorize_risk(risk_eval) {
+      if (0.01 <= risk_eval < 0.06) {
+        $("#id_risk_categorization").val("Slow Risk");
+      } else if (0.06 <= risk_eval < 0.14) {
+        $("#id_risk_categorization").val("Moderate Risk");
+      } else if (0.14 <= risk_eval <= 0.72) {
+        $("#id_risk_categorization").val("High Risk");
+      }
+    }
+
+    $(document).ready(function() {
+      var evaluation = ($("#id_probability").val() * $("#id_impact").val()).toPrecision(4);
+      $("#id_risk_evaluation").val(evaluation);
+      categorize_risk(evaluation);
+      $("#id_program").append(new Option("Other", "other"));
+    });
+
+    probability.change(function () {
+      evaluation_risk.val(($(this).val() * impact.val()).toPrecision(4));
+      categorize_risk(($(this).val() * impact.val()).toPrecision(4));
+    });
+    impact.change(function() {
+      evaluation_risk.val(($(this).val() * probability.val()).toPrecision(4));
+      categorize_risk(($(this).val() * probability.val()).toPrecision(4));
+    });
+
+    program.change(function() {
+      console.log($(this).val());
+      if ($(this).val() == "other") {
+        localStorage.setItem("program", window.location.href);
+        window.location.href = '{% url "create_program" %}';
+      }
+    })
+  </script>
+{% endblock %}

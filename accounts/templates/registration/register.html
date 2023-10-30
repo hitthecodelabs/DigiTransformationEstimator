@@ -1,0 +1,58 @@
+{% extends 'registration/base.html' %}
+{% load static %}
+{% block content %}
+<div class="login login-5 login-signup-on d-flex flex-row-fluid" id="kt_login">
+	<div class="d-flex flex-center bgi-size-cover bgi-no-repeat flex-row-fluid" style="background-image: url({% static 'assets/media/bg/bg-2.jpg' %});">
+		<div class="login-form text-center text-white p-7 position-relative overflow-hidden">
+			<!--begin::Login Header-->
+			<div class="d-flex flex-center mb-15">
+				<a href="#">
+					<img src="{% static 'assets/media/logos/logo-letter-13.png' %}" class="max-h-75px" alt="" />
+				</a>
+			</div>
+            <!--begin::Login Sign up form-->
+            <div class="login-signup">
+                <div class="mb-20">
+                    <h3 class="opacity-40 font-weight-normal">Sign Up</h3>
+                    <p class="opacity-40">Enter your details to create your account</p>
+                </div>
+                <form class="form text-center" id="kt_login_signup_form" method="post" action="{% url 'register' %}">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="form-group">
+                            <input
+                                type="{% if 'password' in field.label_tag %}password{% else %}text{% endif %}"
+                                name="{{ field.html_name }}"
+                                class="form-control h-auto text-white bg-white-o-5 rounded-pill border-0 py-4 px-8"
+                                maxlength="{% if 'username' in field.label_tag %}150{% endif %}"
+                                id="{{ field.id_for_label }}"
+                                placeholder={{field.label}}
+                                required
+                            />
+                        </div>
+                        {% if field.errors %}
+                            {% for error in field.errors %}
+                                <p style="font-size: 13px;">
+                                    {{ error|escape }}
+                                </p>
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                    <div class="form-group text-left px-8">
+                        <label class="checkbox checkbox-outline checkbox-white opacity-60 text-white m-0">
+                        <input type="checkbox" name="agree" />I Agree the
+                        <a href="#" class="text-white font-weight-bold">terms and conditions</a>.
+                        <span></span></label>
+                        <div class="form-text text-muted text-center"></div>
+                    </div>
+                    <div class="form-group">
+                        <button id="kt_login_signup_submit" type="submit" class="btn btn-pill btn-primary opacity-90 px-15 py-3 m-2">Sign Up</button>
+                        <a href="{% url 'login' %}" id="kt_login_signup_cancel" class="btn btn-pill btn-outline-white opacity-70 px-15 py-3 m-2">Cancel</a>
+                    </div>
+                </form>
+            </div>
+            <!--end::Login Sign up form-->
+        </div>
+	</div>
+</div>
+{% endblock content %}

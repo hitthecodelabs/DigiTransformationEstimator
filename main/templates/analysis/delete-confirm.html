@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}
+  <title>Confirm Delete</title>
+{% endblock %}
+
+{% block content %}
+<!--begin::Entry-->
+<div class="d-flex flex-column-fluid mt-5">
+  <!--begin::Container-->
+  <div class="container">
+    <!--begin::Card-->
+    <div class="card card-custom">
+      <div class="card-header flex-wrap border-0 pt-6 pb-0">
+        <div class="card-title">
+          <h3 class="card-label">
+             Delete RIESGOS
+          </h3>
+        </div>
+      </div>
+      <div class="card-body">
+        <form
+          class="form"
+          action="{% url 'delete_risk' object.id %}"
+          method="POST"
+        >
+          {% csrf_token %} {{ form.as_p }}
+          <p>Are you sure you want to delete the risk?</p>
+          <div class="control-group">
+            <div class="controls">
+              <button type="submit" class="btn btn-primary mr-10">Yes, delete</button>
+              <a href="{% url 'list_risk' %}" role="button" class="btn btn-secondary">
+                Cancel
+              </a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!--end::Card-->
+  </div>
+  <!--end::Container-->
+</div>
+<!--end::Entry-->
+{% endblock %}

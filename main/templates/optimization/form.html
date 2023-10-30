@@ -1,0 +1,91 @@
+<h3>Proyecto Seleccionado 
+    <strong class="text-primary" v-if="project_selected">${ project }</strong>
+    <strong class="text-danger" v-if="!project_selected">Seleccione un Proyecto de la Izquierda</strong>
+</h3>
+<div v-if="view_quiz">
+<table class="my-table" v-if="view_objectives">
+    <thead>
+        <tr v-for="itm in all_data[current_project].quiz.objectives">
+            <td class="hg" @click="listObjCat(itm)"> 
+            <strong v-if="itm.complete"><i class="fas fa-check-square text-success"></i></strong>
+            ${ itm.name } 
+            </td>
+        </tr>
+    </thead>
+</table>
+<table class="my-table" v-if="view_obj_cat">
+    <thead>
+        <tr v-for="itm in all_data[current_project].quiz.objectives_categories">
+            <td class="hg" @click="listSubcateg(itm)" v-if="itm.id_objetive === current_objective"> 
+            <strong v-if="itm.complete"><i class="fas fa-check-square text-success"></i></strong>
+            ${ itm.name } 
+            </td>
+        </tr>
+    </thead>
+</table>
+<table class="my-table" v-if="view_subcateg">
+    <thead>
+        <tr v-for="itm in all_data[current_project].quiz.subcategory">
+            <td class="hg" @click="listQuestions(itm)" v-if="itm.objective_category_id == current_category"> 
+                <strong v-if="itm.complete"><i class="fas fa-check-square text-success"></i></strong>
+                ${ itm.name } 
+            </td>
+        </tr>
+    </thead>
+</table>
+<table class="my-table" v-if="vew_questions">
+    <thead>
+        <tr v-for="itm in all_data[current_project].quiz.questions">
+            <td class="hg" @click="addResult(itm)" :class="{selected: itm.selected}" v-if="itm.id_subcategory === current_subcat">
+            <strong v-if="itm.selected"><i class="fas fa-check-square text-success"></i></strong>
+            ${itm.question}
+            </td>
+        </tr>
+    </thead>
+</table>
+
+<hr/>
+<button class="btn btn-primary" @click="saveOptimization()">
+    Guardar <i class="fas fa-save"></i>
+</button>
+<button class="btn btn-success" @click="showGraph()">
+    Ver Resultados & Guardar <i class="fas fa-table"></i>
+</button>
+
+</div>
+<div v-if="view_graph">
+<br>
+<strong>Selecione el grafico a mostrar</strong> <button class="btn btn-info" style="float:right" @click="exportCSV(false)"> <i class="fas fa-file-csv"></i> Exportar CSV</button>
+<br/>
+<br/>
+    <table class="my-table" v-if="view_objectives" style="background-color:#76D7C4;">
+    <thead>
+        <tr>
+        <th 
+            class="hg text-center" 
+            @click="generateGraph(0)"
+            style="width:20%"
+            > 
+            Totales
+            </th>
+            <th 
+            v-for="itm in  all_data[current_project].quiz.objectives" 
+            class="hg text-center" 
+            @click="generateGraph(itm)"
+            style="width:20%"
+            > 
+            ${ itm.name } 
+            </th>
+        </tr>
+    </thead>
+</table>
+<hr/>
+<div id="MyChart">
+    <canvas id="bar-chart" width="800" height="250"></canvas>
+</div>
+    <hr/>
+    <button class="btn btn-block btn-primary" @click="showQuiz()">
+        <i class="fas fa-arrow-left"></i>
+        Volver
+    </button>
+</div>
