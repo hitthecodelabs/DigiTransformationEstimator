@@ -25,8 +25,8 @@ The web project was developed using the Django framework and has the following f
 
 1. **Clone the Repository**
    ```bash
-   git clone [Repository URL]
-   cd [Repository Name]
+   git clone https://github.com/hitthecodelabs/DigiTransformationEstimator.git
+   cd DigiTransformationEstimator
    ```
 
 2. **Install Dependencies**
