@@ -45,3 +45,15 @@ The web project was developed using the Django framework and has the following f
    ```
 
 5. Navigate to `http://127.0.0.1:8000/` in your browser to access the project.
+
+## Contributing
+Contributions to DigiTransformationEstimator are welcome! Here's how you can contribute:
+
+Fork the repository on GitHub.
+Create a new branch for your proposed feature or fix.
+Commit your changes with an informative description.
+Push your branch and submit a pull request.
+We appreciate your input!
+
+## License
+DigiTransformationEstimator is open source software licensed under the MIT License. See the LICENSE file for more details.
